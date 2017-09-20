@@ -59,8 +59,6 @@ public class BuyerProductController {
         }
 
 
-
-        productVO.setProductInfoVOS(Arrays.asList(productInfoVO));
         ResultVO resultVO = new ResultVO();
         resultVO.setCode(0);
         resultVO.setMsg("成功");
