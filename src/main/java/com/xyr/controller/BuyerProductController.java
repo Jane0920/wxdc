@@ -32,6 +32,10 @@ public class BuyerProductController {
     @Autowired
     private CategoryService categoryService;
 
+    /**
+     * 列出所有上架商品
+     * @return
+     */
     @GetMapping("/list")
     public ResultVO list() {
         //查询所有的上架商品
@@ -42,27 +46,30 @@ public class BuyerProductController {
                 .collect(Collectors.toList());
         List<ProductCategory> categoryList = categoryService.findByCategoryType(typeList);
         //数据拼装
-
+        List<ProductVO> productVOList = new ArrayList<>();
         for (ProductCategory category: categoryList) {
             ProductVO productVO = new ProductVO();
             productVO.setCategoryName(category.getCategoryName());
             productVO.setCategoryType(category.getCategoryType());
 
+            List<ProductInfoVO> productInfoVOList = new ArrayList<>();
             for (ProductInfo productInfo : productInfos) {
                 if (productInfo.getCategoryType() == category.getCategoryType()) {
                     ProductInfoVO productInfoVO = new ProductInfoVO();
                     BeanUtils.copyProperties(productInfo, productInfoVO);
+                    productInfoVOList.add(productInfoVO);
                 }
             }
 
-            productVO.setProductInfoVOS();
+            productVO.setProductInfoVOS(productInfoVOList);
+            productVOList.add(productVO);
         }
 
 
         ResultVO resultVO = new ResultVO();
         resultVO.setCode(0);
         resultVO.setMsg("成功");
-        resultVO.setData(Arrays.asList(productVO));
+        resultVO.setData(productVOList);
 
         return resultVO;
     }
