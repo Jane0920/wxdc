@@ -4,6 +4,7 @@ import com.xyr.po.ProductCategory;
 import com.xyr.po.ProductInfo;
 import com.xyr.service.CategoryService;
 import com.xyr.service.ProductService;
+import com.xyr.utils.ResultVOUtil;
 import com.xyr.vo.ProductInfoVO;
 import com.xyr.vo.ProductVO;
 import com.xyr.vo.ResultVO;
@@ -65,13 +66,7 @@ public class BuyerProductController {
             productVOList.add(productVO);
         }
 
-
-        ResultVO resultVO = new ResultVO();
-        resultVO.setCode(0);
-        resultVO.setMsg("成功");
-        resultVO.setData(productVOList);
-
-        return resultVO;
+        return ResultVOUtil.success(productVOList);
     }
 
 }
