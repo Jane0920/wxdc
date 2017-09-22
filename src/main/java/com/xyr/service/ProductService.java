@@ -1,5 +1,6 @@
 package com.xyr.service;
 
+import com.xyr.dto.CartDTO;
 import com.xyr.po.ProductInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,5 +24,15 @@ public interface ProductService {
     Page<ProductInfo> findAll(Pageable pageable) throws Exception;
 
     ProductInfo save(ProductInfo productInfo) throws Exception;
+
+    /**
+     * 加库存
+     */
+    void increaseStock(List<CartDTO> cartDTOList);
+
+    /**
+     * 减库存
+     */
+    void decreaseStock(List<CartDTO> cartDTOList);
 
 }
