@@ -1,12 +1,16 @@
 package com.xyr.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.xyr.enums.OrderStatusEnum;
 import com.xyr.enums.PayStatusEnum;
 import com.xyr.po.OrderDetail;
+import com.xyr.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +18,7 @@ import java.util.List;
  * Created by xyr on 2017/9/21.
  */
 @Data
+//@JsonInclude(JsonInclude.Include.NON_NULL) //返回的json中不包含为null的属性
 public class OrderDTO {
     /** 订单id. */
     private String orderId;
@@ -40,9 +45,11 @@ public class OrderDTO {
     private Integer payStatus = PayStatusEnum.WAIT.getCode();
 
     /** 创建时间. */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date createTime;
 
     /** 更新时间. */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
     private List<OrderDetail> orderDetailList;

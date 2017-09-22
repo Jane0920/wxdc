@@ -13,7 +13,7 @@ import com.xyr.exception.SellException;
 import com.xyr.po.OrderDetail;
 import com.xyr.po.OrderMaster;
 import com.xyr.po.ProductInfo;
-import com.xyr.service.OderService;
+import com.xyr.service.OrderService;
 import com.xyr.service.ProductService;
 import com.xyr.utils.KeyUtil;
 import org.springframework.beans.BeanUtils;
@@ -26,7 +26,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +33,7 @@ import java.util.stream.Collectors;
  * Created by xyr on 2017/9/21.
  */
 @Service
-public class OrderServiceImpl implements OderService {
+public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
@@ -51,6 +50,7 @@ public class OrderServiceImpl implements OderService {
         BigDecimal orderAmount = new BigDecimal(0);
         //订单id生成
         String orderId = KeyUtil.getUniqueKey();
+        orderDTO.setOrderId(orderId);
         //查询商品数量价格等信息
         for (OrderDetail detail: orderDTO.getOrderDetailList()) {
             ProductInfo productInfo = productRepository.findOne(detail.getProductId());
@@ -70,7 +70,6 @@ public class OrderServiceImpl implements OderService {
         //写入订单数据库 orderMaster
         OrderMaster orderMaster = new OrderMaster();
         BeanUtils.copyProperties(orderDTO, orderMaster);
-        orderMaster.setOrderId(orderId);
         orderMaster.setOrderAmount(orderAmount);
         orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
         orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());

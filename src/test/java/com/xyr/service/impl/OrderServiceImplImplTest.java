@@ -16,14 +16,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by xyr on 2017/9/22.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OrderServiceImplTest {
+public class OrderServiceImplImplTest {
 
     @Autowired
     private OrderServiceImpl orderService;

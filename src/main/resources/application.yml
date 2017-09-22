@@ -6,5 +6,8 @@ spring:
     url: jdbc:mysql://106.14.149.59/wxdc?characterEncoding=utf-8&useSSL=false
   jpa:
     show-sql: true
+  jackson:
+    default-property-inclusion: non_null #返回到前端的json中不包含为null的属性
 server:
   context-path: /wxdc
+

@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 /**
  * Created by xyr on 2017/9/21.
  */
-public interface OderService {
+public interface OrderService {
 
     /**
      * 创建订单
