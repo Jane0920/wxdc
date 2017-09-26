@@ -14,6 +14,7 @@ import com.xyr.po.OrderDetail;
 import com.xyr.po.OrderMaster;
 import com.xyr.po.ProductInfo;
 import com.xyr.service.OrderService;
+import com.xyr.service.PayService;
 import com.xyr.service.ProductService;
 import com.xyr.utils.KeyUtil;
 import org.springframework.beans.BeanUtils;
@@ -43,6 +44,8 @@ public class OrderServiceImpl implements OrderService {
     private ProductRepository productRepository;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private PayService payService;
 
     @Override
     @Transactional
@@ -132,7 +135,7 @@ public class OrderServiceImpl implements OrderService {
         productService.increaseStock(cartDTOList);
         //如果以支付，需要给用户退款
         if (orderResult.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
-            //todo
+            payService.refund(orderDTO);
         }
         return orderDTO;
     }
