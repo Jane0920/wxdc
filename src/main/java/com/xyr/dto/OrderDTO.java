@@ -1,10 +1,12 @@
 package com.xyr.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.xyr.enums.OrderStatusEnum;
 import com.xyr.enums.PayStatusEnum;
 import com.xyr.po.OrderDetail;
+import com.xyr.utils.EnumUtil;
 import com.xyr.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 import lombok.Getter;
@@ -53,4 +55,15 @@ public class OrderDTO {
     private Date updateTime;
 
     private List<OrderDetail> orderDetailList;
+
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum() {
+        return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
+
 }
