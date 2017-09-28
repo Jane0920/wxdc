@@ -39,13 +39,13 @@ public class ProductRepositoryTest {
 
         ProductInfo productInfo2 = new ProductInfo();
         productInfo2.setProductId(KeyUtil.getUniqueKey());
-        productInfo2.setProductName("菠萝排骨");
-        productInfo2.setProductPrice(new BigDecimal(25));
+        productInfo2.setProductName("辣子鸡丁");
+        productInfo2.setProductPrice(new BigDecimal(32));
         productInfo2.setCategoryType(2);
-        productInfo2.setProductDescription("菠萝的酸甜加排骨肉香");
+        productInfo2.setProductDescription("四川人的味道");
         productInfo2.setProductStatus(ProductStatusEnum.UP.getCode());
-        productInfo2.setProductStock(60);
-        productInfo2.setProductIcon("src/xyr/pg.jpg");
+        productInfo2.setProductStock(100);
+        productInfo2.setProductIcon("https://g-search1.alicdn.com/img/bao/uploaded/i4/i1/2184754624/TB18uz.fiAKL1JjSZFoXXagCFXa_!!0-item_pic.jpg_250x250.jpg_.webp");
 
         productRepository.saveAndFlush(productInfo2);
     }

@@ -1,6 +1,7 @@
 package com.xyr.po;
 
 import com.xyr.enums.ProductStatusEnum;
+import com.xyr.utils.EnumUtil;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -44,5 +45,9 @@ public class ProductInfo {
     private Date createTime;
 
     private Date updateTime;
+
+    public ProductStatusEnum getProductStatusEnum() {
+        return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
+    }
 
 }

@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductInfo> findAll(Pageable pageable) throws Exception{
+    public Page<ProductInfo> findAll(Pageable pageable) {
         return productRepository.findAll(pageable);
     }
 
@@ -73,5 +73,37 @@ public class ProductServiceImpl implements ProductService {
             productInfo.setProductStock(stock);
             productRepository.save(productInfo);
         }
+    }
+
+    @Override
+    @Transactional
+    public ProductInfo onSale(String productId) {
+        ProductInfo productInfo = productRepository.findOne(productId);
+        if (productInfo == null) {
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+        if (productInfo.getProductStatusEnum() == ProductStatusEnum.UP) {
+            throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+        }
+
+        //更新
+        productInfo.setProductStatus(ProductStatusEnum.UP.getCode());
+        return productRepository.save(productInfo);
+    }
+
+    @Override
+    @Transactional
+    public ProductInfo offSale(String productId) {
+        ProductInfo productInfo = productRepository.findOne(productId);
+        if (productInfo == null) {
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+        if (productInfo.getProductStatusEnum() == ProductStatusEnum.DOWN) {
+            throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+        }
+
+        //更新
+        productInfo.setProductStatus(ProductStatusEnum.DOWN.getCode());
+        return productRepository.save(productInfo);
     }
 }

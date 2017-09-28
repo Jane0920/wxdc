@@ -21,7 +21,7 @@ public interface ProductService {
      */
     List<ProductInfo> findUpAll();
 
-    Page<ProductInfo> findAll(Pageable pageable) throws Exception;
+    Page<ProductInfo> findAll(Pageable pageable);
 
     ProductInfo save(ProductInfo productInfo) throws Exception;
 
@@ -34,5 +34,11 @@ public interface ProductService {
      * 减库存
      */
     void decreaseStock(List<CartDTO> cartDTOList);
+
+    //上架
+    ProductInfo onSale(String productId);
+
+    //下架
+    ProductInfo offSale(String productId);
 
 }
