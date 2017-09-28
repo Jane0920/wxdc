@@ -25,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public ProductInfo findOne(String productId) throws Exception{
+    public ProductInfo findOne(String productId) {
         return productRepository.findOne(productId);
     }
 
@@ -40,7 +40,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductInfo save(ProductInfo productInfo) throws Exception{
+    public ProductInfo save(ProductInfo productInfo) {
         return productRepository.saveAndFlush(productInfo);
     }
 

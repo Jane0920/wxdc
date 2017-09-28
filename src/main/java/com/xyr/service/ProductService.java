@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface ProductService {
 
-    ProductInfo findOne(String productId) throws Exception;
+    ProductInfo findOne(String productId);
 
     /**
      * 查询在架的商品列表
@@ -23,7 +23,7 @@ public interface ProductService {
 
     Page<ProductInfo> findAll(Pageable pageable);
 
-    ProductInfo save(ProductInfo productInfo) throws Exception;
+    ProductInfo save(ProductInfo productInfo);
 
     /**
      * 加库存
