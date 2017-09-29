@@ -12,7 +12,7 @@ spring:
     host: 106.14.149.59
     port: 6379
   #freemarker:
-  #  request-context-attribute: request
+   # request-context-attribute: request
 server:
   context-path: /sell
 wechat:

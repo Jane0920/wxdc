@@ -17,6 +17,7 @@ import com.xyr.service.OrderService;
 import com.xyr.service.PayService;
 import com.xyr.service.ProductService;
 import com.xyr.service.PushMessageService;
+import com.xyr.service.WebSocket;
 import com.xyr.utils.KeyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,8 @@ public class OrderServiceImpl implements OrderService {
     private PayService payService;
     @Autowired
     private PushMessageService pushMessageService;
+    @Autowired
+    private WebSocket webSocket;
 
     @Override
     @Transactional
@@ -86,6 +89,9 @@ public class OrderServiceImpl implements OrderService {
                 .map(e -> new CartDTO(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
         productService.decreaseStock(cartDTOList);
+
+        //发送webSocket消息
+        webSocket.sendMessage("您有新的订单");
         return orderDTO;
     }
 
