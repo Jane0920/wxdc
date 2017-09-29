@@ -4,6 +4,8 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 /**
  * Created by xyr on 2017/9/25.
  */
@@ -39,5 +41,10 @@ public class WechatAccountConfig {
      * 异步通知地址
      */
     private String notifyUrl;
+
+    /**
+     * 微信模版id
+     */
+    private Map<String, String> templateId;
 
 }

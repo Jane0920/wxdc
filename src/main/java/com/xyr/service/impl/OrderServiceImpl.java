@@ -16,6 +16,7 @@ import com.xyr.po.ProductInfo;
 import com.xyr.service.OrderService;
 import com.xyr.service.PayService;
 import com.xyr.service.ProductService;
+import com.xyr.service.PushMessageService;
 import com.xyr.utils.KeyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,8 @@ public class OrderServiceImpl implements OrderService {
     private ProductService productService;
     @Autowired
     private PayService payService;
+    @Autowired
+    private PushMessageService pushMessageService;
 
     @Override
     @Transactional
@@ -182,6 +185,10 @@ public class OrderServiceImpl implements OrderService {
         OrderMaster orderResult = orderMasterRepository.save(orderMaster);
         if (orderResult == null)
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
+
+        //推送订单完结消息
+        //pushMessageService.orderStatus(orderDTO);
+
         return orderDTO;
     }
 }
