@@ -1,10 +1,12 @@
 package com.xyr.exception;
 
 import com.xyr.enums.ResultEnum;
+import lombok.Getter;
 
 /**
  * Created by xyr on 2017/9/21.
  */
+@Getter
 public class SellException extends RuntimeException {
     private Integer code;
 

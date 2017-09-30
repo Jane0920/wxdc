@@ -31,6 +31,11 @@ projectURL:
   wechatMpAuthorize: http://sell.natapp4.cc
   wechatOpenAuthorize: http://sell.natapp4.cc
   sell: http://localhost:8080
+logging:
+  level:
+    com.xyr.po.mapper: trace #设置日志级别，打印Mybatis的sql语句:
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
 
 
 

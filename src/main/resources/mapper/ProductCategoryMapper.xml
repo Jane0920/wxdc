@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xyr.po.mapper.ProductCategoryMapper">
+    <resultMap id="BaseResultMap" type="com.xyr.po.ProductCategory">
+        <id column="category_id" property="categoryId" javaType="Integer"/>
+        <result column="category_name" property="categoryName" javaType="String" />
+        <result column="category_type" property="categoryType" javaType="Integer" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        category_id, category_name, category_type
+    </sql>
+    <select id="selectByCategoryType" resultMap="BaseResultMap" parameterType="Integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM product_category
+        WHERE category_type = #{categoryType}
+    </select>
+</mapper>
