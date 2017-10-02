@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class SellerAuthorizeAspect {
 
-    /*@Autowired
+    @Autowired
     private static final Logger log = LoggerFactory.getLogger(SellerAuthorizeAspect.class);
 
     @Autowired
@@ -55,6 +55,6 @@ public class SellerAuthorizeAspect {
             log.warn("【登录校验】Redis中未找到token");
             throw new SellAuthorizeException();
         }
-    }*/
+    }
 
 }

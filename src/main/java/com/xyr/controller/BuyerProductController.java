@@ -10,6 +10,7 @@ import com.xyr.vo.ProductVO;
 import com.xyr.vo.ResultVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,7 @@ public class BuyerProductController {
      * @return
      */
     @GetMapping("/list")
+    @Cacheable(cacheNames = "product", key = "123")
     public ResultVO list() {
         //查询所有的上架商品
         List<ProductInfo> productInfos = productService.findUpAll();
